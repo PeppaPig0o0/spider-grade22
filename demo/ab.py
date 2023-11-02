@@ -88,6 +88,7 @@ def function2(func):
 # print(l)
 
 
+
 l = ['哈哈', '哈哈1', '哈哈2', '哈哈3']
 a = map(lambda i: i+'123', l)
 print(a)
