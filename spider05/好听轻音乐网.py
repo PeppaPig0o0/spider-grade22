@@ -7,6 +7,7 @@
 import re
 import requests
 from lxml import etree
+
 # ② 设置URL
 ranks = ['http://www.htqyy.com/top/musicList/hot',
          'http://www.htqyy.com/top/musicList/new',
