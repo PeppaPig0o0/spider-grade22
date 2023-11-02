@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="6a426417-2ef9-4939-9ab8-b35ddb0b89de" name="@123.60.79.108 Mapping">
+      <data-sources db="ed785b3d-8e52-42a7-a8c8-a5011d7323a8" />
+      <scope>
+        <node negative="1">
+          <node kind="database" negative="1">
+            <node kind="schema" negative="1" />
+          </node>
+          <node kind="schema">
+            <name qname="0" />
+            <name qname="1" />
+            <name qname="2" />
+            <name qname="3" />
+            <name qname="4" />
+            <name qname="5" />
+            <name qname="6" />
+            <name qname="7" />
+            <name qname="8" />
+            <name qname="9" />
+            <name qname="10" />
+            <name qname="11" />
+            <name qname="12" />
+            <name qname="13" />
+            <name qname="14" />
+            <name qname="15" />
+          </node>
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>
