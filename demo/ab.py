@@ -87,6 +87,7 @@ def function2(func):
 # print(sorted(l, key=lambda item: item[1]))
 # print(l)
 
+
 l = ['哈哈', '哈哈1', '哈哈2', '哈哈3']
 a = map(lambda i: i+'123', l)
 print(a)
