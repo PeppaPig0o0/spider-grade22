@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # def func1():
 #     def outer():
 #         def warper():
@@ -12,17 +14,17 @@ import time
 
 
 # 无参装饰器
-def function2(func):
-    def warpper(*args, **kwargs):
-        start_time = time.time()
-        print(start_time)
-        res = func(*args, **kwargs)
-        time.sleep(0.2)
-        end_time = time.time()
-        print(end_time - start_time)
-        return res
-
-    return warpper
+# def function2(func):
+#     def wrapper(*args, **kwargs):
+#         start_time = time.time()
+#         print(start_time)
+#         res = func(*args, **kwargs)
+#         time.sleep(0.2)
+#         end_time = time.time()
+#         print(end_time - start_time)
+#         return res
+#
+#     return wrapper
 
 
 # @func1
@@ -86,10 +88,99 @@ def function2(func):
 #
 # print(sorted(l, key=lambda item: item[1]))
 # print(l)
+# class A:
+#     count = 0
+#     def __init__(self, name=20):
+#         A.count += 1
+#
+#     def _hel(self):
+#         print('hel')
+#
+# class B(A):
+#     def run(self):
+#         self._hel()
+#
+# a = A()
+# b = B()
+# b.run()
+# print(a._A__hel())
+# print(A.__dict__)
 
 
+# class A:
+#     __age = 10
+#     @property
+#     def age(self):
+#         return self.__age
+#     @age.setter
+#     def age(self, new_age):
+#         if type(new_age) is not int:
+#             print('请输入整数')
+#         elif not 0<=new_age<150:
+#             print('年龄不对')
+#         else:
+#             self.__age = new_age
+#             print(f'age设置为{new_age}')
+#
+#     @age.deleter
+#     def age(self):
+#         del self.__age
+#         print('删除age')
+#
+#
+# a = A()
+# print(id(a.age))
+# print(id(A.age))
+# print(a.age)
+# a.age = 20
+# print(a.age)
+# del a.age
+# print(a.age)
+# print(id(a.age))
+# print(id(A.age))
 
-l = ['哈哈', '哈哈1', '哈哈2', '哈哈3']
-a = map(lambda i: i+'123', l)
-print(a)
+# class P1:
+#     def age(self):
+#         print('p1')
+#
+#
+# class P2:
+#     # def age(self):
+#     #     print('p2')
+#     def name(self):
+#         print('p2')
+#         self.age()
+# class Kid(P2,P1):
+#     ...
+#     # def age(self):
+#     #     print('kid')
+#
+# k = Kid()
+# k.name()
+# print(Kid.mro())
 
+
+class Fowl:
+    def f1(self):
+        print('Fowl的F1')
+
+
+class SwimMixin:
+    def swiming(self):
+        print('游泳')
+    def f1(self):
+        print('SwimMixin的F1')
+        super().f1()
+
+class Chicken(Fowl):
+    def f1(self):
+        print('Chicken的F1')
+
+
+class Duck(SwimMixin, Chicken):
+    ...
+d = Duck()
+d.f1()
+
+class Goose(SwimMixin, Fowl):
+    ...
