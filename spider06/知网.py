@@ -19,7 +19,7 @@ time.sleep(2)
 browser.find_element(By.ID, 'txt_SearchText').send_keys('英雄联盟')
 time.sleep(0.5)
 browser.find_element(By.CLASS_NAME, 'search-btn').click()
-time.sleep(5)v v
+time.sleep(5)
 # ⑤ 提取网页信息
 tr_list = browser.find_elements(By.XPATH, '//*[@id="gridTable"]/div/div/table/tbody/tr')
 for tr in tr_list:

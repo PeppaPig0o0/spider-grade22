@@ -13,8 +13,8 @@ data = {
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
     'Referer':'https://bz.zzzmh.cn/',
-'Origin':'https://bz.zzzmh.cn',
-'authority':'api.zzzmh.cn',
+    'Origin':'https://bz.zzzmh.cn',
+    'authority':'api.zzzmh.cn',
     'path': '/bz/v3/download',
 
 'Accept':'application/json, text/plain, */*',
