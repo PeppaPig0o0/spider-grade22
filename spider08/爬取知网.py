@@ -32,7 +32,7 @@ for tr in tr_list:
     # 提取论文发表日期
     date = tr.find_element(By.XPATH, 'td[@class="date"]').text
     print(title, authors, source, date)
-    time.sleep(0.2)
+    time.sleep(0.1)
 # 关闭浏览器
 time.sleep(2)
 browser.close()
