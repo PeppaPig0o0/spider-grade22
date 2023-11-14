@@ -5,6 +5,7 @@
 """
 # ① 引入库(selenium库)
 import time
+import random
 from selenium.common import exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
