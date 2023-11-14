@@ -8,7 +8,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 # ② 设置chromedriver启动路径，并实例化一个浏览器对象（窗口）
-service = webdriver.ChromeService(executable_path='chromedriver.exe')
+service = webdriver.ChromeService(executable_path='chromedriver11.exe')
 browser = webdriver.Chrome(service=service)
 # ③ 访问URL
 browser.get('https://www.baidu.com/')

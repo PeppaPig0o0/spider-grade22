@@ -4,7 +4,7 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-service = webdriver.ChromeService(executable_path='chromedriver.exe')
+service = webdriver.ChromeService(executable_path='chromedriver11.exe')
 browser = webdriver.Chrome(service=service)
 browser.get('https://www.baidu.com/')
 time.sleep(2)
