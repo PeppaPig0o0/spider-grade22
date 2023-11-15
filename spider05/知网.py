@@ -20,7 +20,7 @@ def parse(element):
     authors = element.find_elements(By.XPATH, 'td[@class="author"]/a')
     authors = ','.join([author.text for author in authors])  # 作者
     source = element.find_element(By.XPATH, 'td[@class="source"]/p/a').text  # 来源
-    public_date = element.find_element(By.CLASS_NAME, 'date')  # 发表日期
+    public_date = element.find_element(By.CLASS_NAME, 'date').text  # 发表日期
     print(title, authors, source, public_date)
 
 
