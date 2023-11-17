@@ -21,12 +21,33 @@ time.sleep(2)
 # ⑤ 提取页面信息
 tr_list = browser.find_elements(By.XPATH, '//tbody/tr')
 for tr in tr_list:
-    title = tr.find_element(By.CLASS_NAME, 'fz14').text  # 论文标题
+    a_title = tr.find_element(By.CLASS_NAME, 'fz14')  # 论文标题
+    title = a_title.text
     authors = tr.find_elements(By.XPATH, 'td[@class="author"]/a')  # 论文作者
     authors = ','.join([author.text for author in authors])
     source = tr.find_element(By.XPATH, 'td[@class="source"]//a').text
     public_date = tr.find_element(By.CLASS_NAME, 'date').text
-    print(title, authors, source, public_date)
+
+    # ⑥ 点击标题->打开内容页，并切换窗口/标签页
+    a_title.click()
+    time.sleep(5)
+    browser.switch_to.window(browser.window_handles[1])
+    # ⑦ 提取内容页信息
+    try:
+        abstract = browser.find_element(By.CLASS_NAME, 'abstract-text').text  # 摘要
+    except:
+        abstract = '无'
+    try:
+        keywords = browser.find_elements(By.NAME, 'keyword')
+        keywords = ','.join([k.text for k in keywords])  # 关键词
+    except:
+        keywords = '无'
+
+    print(title, authors, source, public_date, abstract, keywords)
+    # ⑧ 关闭内容页，切回列表页
+    browser.close()
+    time.sleep(2)
+    browser.switch_to.window(browser.window_handles[0])
 
 # 关闭浏览器窗口
 time.sleep(5)
