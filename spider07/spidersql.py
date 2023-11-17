@@ -1,48 +1,44 @@
-import random
-import time
 import pymysql
 
 
-class Mysql:
-    def __init__(self,
-                 host: str = 'localhost',  # 数据库地址
-                 user: str = 'root',  # 链接用户名
-                 password: str = '007741ak',  # 链接密码
-                 port: int = 3306,  # 端口
-                 database: str = 'spider07') -> None:  # 库名字
-        self.cursor = None
+class Conn:
+    def __init__(self, **kwargs) -> None:
+        self.__host = kwargs.get('host', 'localhost')  # 数据库地址
+        self.__user = kwargs.get('user', 'root')  # 链接用户名
+        self.__password = kwargs.get('password', '007741ak')  # 链接密码
+        self.__port = kwargs.get('port', 3306)  # 链接端口
+        self.__database = kwargs.get('database', 'spider08')  # 接入数据库名字
         self.conn = None
-        self.__host = host
-        self.__user = user
-        self.__password = password
-        self.__port = port
-        self.__database = database
+        self.cursor = None
         self.__run()
 
     def __run(self) -> None:
-        self.conn = pymysql.connect(host=self.__host,
-                                    user=self.__user,
-                                    password=self.__password,
-                                    port=self.__port,
-                                    database=self.__database)
-        self.cursor = self.conn.cursor()  # 游标对象
-        self.conn_id = str(int(time.time())) + ''.join(random.sample(['X', 'Y', 'M', 'R', 'K', 'W', 'G'], 2))
-        print('''<- 数据库链接{}开启 ->
-用户名:{} 端口:{} 接入数据库:{}'''.format(
-            self.conn_id,
-            self.__user,
-            self.__port,
-            self.__database))
+        """
+        开启数据库链接
+        """
+        try:
+            self.conn = pymysql.connect(host=self.__host,
+                                        user=self.__user,
+                                        password=self.__password,
+                                        port=self.__port,
+                                        database=self.__database)
+            self.cursor = self.conn.cursor()
+            print(f'数据库链接开启->用户名{self.__user}->数据库{self.__database}')
+        except:
+            print('链接失败，请检查链接信息')
 
     def __del__(self) -> None:
-        self.cursor.close()
-        self.conn.close()
-        print(f'<- 数据库链接{self.conn_id}关闭 ->')
+        if self.conn and self.conn:
+            self.cursor.close()
+            self.conn.close()
+            print('关闭数据库链接')
+        else:
+            print('数据库链接异常，已关闭')
 
 
-cnki = Mysql()
-sql = 'select * from zhiwang'
-cnki.cursor.execute(sql)
-cnki.conn.commit()
-res = cnki.cursor.fetchall()
-print(res)
+if __name__ == '__main__':
+    c = Conn()
+    sql = 'select * from zhiwang'
+    c.cursor.execute(sql)
+    res = c.cursor.fetchone()
+    print(res)
