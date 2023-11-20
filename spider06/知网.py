@@ -9,6 +9,7 @@ import random
 from selenium.common import exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from conn import Conn
 
 
 # 定义一个函数（提取一条信息:标题、作者、摘要、关键词等等）
@@ -28,9 +29,16 @@ def parse_one(element):
     abstract = browser.find_element(By.CLASS_NAME, 'abstract-text').text  # 摘要/正文快照
     keywords = browser.find_elements(By.NAME, 'keyword')
     keywords = ','.join([k.text for k in keywords])  # 关键词
-    #  ⑧ 打印结果
+    #  ⑧ 打印结果，并存储到mysql数据库
     print(title, authors, source, public_date)
     print(abstract, keywords)
+    # sql语句
+    sql = f'''  
+    INSERT INTO zhiwang(title, authors, source, public_date, abstract, keywords) 
+    VALUES('{title}', '{authors}', '{source}', '{public_date}', '{abstract}', '{keywords}')
+    '''
+    db.cursor.execute(sql)  # 提交到数据库
+    db.conn.commit()
     browser.close()  # 关闭标签页
     # ⑨ 切换回原标签页
     browser.switch_to.window(browser.window_handles[0])
@@ -45,6 +53,7 @@ if __name__ == '__main__':
     # ③ 访问url
     browser.get('https://www.cnki.net')
     time.sleep(2)
+    db = Conn()  # 建立数据库链接
     # ④ 在搜索栏输入，并点击搜索
     # browser.find_element(by=By.ID, value='txt_SearchText').send_keys('王者荣耀')
     browser.find_element(By.ID, 'txt_SearchText').send_keys('英雄联盟')

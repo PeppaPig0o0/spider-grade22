@@ -13,8 +13,6 @@ class Conn:
         """
         开启数据库链接
         """
-        print(type(self.__port))
-        print(type(self.__user))
         try:
             self.conn = pymysql.connect(host=self.__host,
                                         user=self.__user,
