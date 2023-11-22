@@ -43,6 +43,21 @@ class Conn:
             print('数据库链接异常，已关闭')
 
 
+from pymongo import MongoClient
+
+
+class MongoDB:
+    def __init__(self, database, host="localhost", port=27017):
+        self.client = MongoClient(host, port)
+        self.db = self.client[database]
+
+    def get_collection(self, collection_name):
+        return self.db[collection_name]
+
+    def close(self):
+        self.client.close()
+
+
 if __name__ == '__main__':
     db = Conn()
     sql = 'SELECT * FROM zhiwang'
