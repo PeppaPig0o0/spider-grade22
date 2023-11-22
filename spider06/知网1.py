@@ -133,11 +133,17 @@ class Z:
 
     async def __init__(self, n):
         self.n = n
-        self.browser = webdriver.Chrome(service=Z.service)
-        # self.db = MongoClient('mongodb://localhost:27017/')
-        self.db = MongoDB('spider06')
-        self.db.get_collection('zhiwang')
-        await self.__run()
+        for i in range(100):
+            print(n)
+            await asyncio.sleep(0.1)
+
+
+
+        # self.browser = webdriver.Chrome(service=Z.service)
+        # # self.db = MongoClient('mongodb://localhost:27017/')
+        # self.db = MongoDB('spider06')
+        # self.db.get_collection('zhiwang')
+        # await self.__run()
 
     async def __run(self):
         await asyncio.sleep(2)
@@ -213,5 +219,8 @@ if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     res = loop.run_until_complete(main())
     # asyncio.run(main())
+
+    #10.049206018447876
+
 
 
