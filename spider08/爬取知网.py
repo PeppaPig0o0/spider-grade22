@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.common import exceptions
 from conn import Conn
 
+print(123456)
 
 # 定义一个函数,解析一条数据
 def parse_one(element):
