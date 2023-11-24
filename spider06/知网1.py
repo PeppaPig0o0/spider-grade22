@@ -7,9 +7,12 @@
 import time
 import random
 import asyncio
+
+import aiohttp
 from selenium.common import exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import httpx
 
 from conn import Conn, MongoDB
 #
@@ -51,7 +54,7 @@ from conn import Conn, MongoDB
 
 
 class Zi:
-    service = webdriver.ChromeService(executable_path='chromedriver.exe')
+    service = webdriver.ChromeService(executable_path='./chromedriver.exe')
 
     async def __new__(cls, *args, **kwargs):
         instance = super().__new__(cls)
@@ -134,8 +137,11 @@ class Z:
     async def __init__(self, n):
         self.n = n
         for i in range(100):
-            print(n)
-            await asyncio.sleep(0.1)
+            async aiohttp.ClientSession() as session:
+                async with  session.get('https://www.baidu.com') as res:
+                    print(i)
+
+
 
 
 
@@ -208,17 +214,20 @@ async def main():
 
 
 if __name__ == '__main__':
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36'
+    }
     """
     设置uvloop
     import uvloop
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     """
-    import uvloop
+    # import uvloop
 
-    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-    loop = asyncio.get_event_loop()
-    res = loop.run_until_complete(main())
-    # asyncio.run(main())
+    # asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+    # loop = asyncio.get_event_loop()
+    # res = loop.run_until_complete(main())
+    asyncio.run(main())
 
     #10.049206018447876
 

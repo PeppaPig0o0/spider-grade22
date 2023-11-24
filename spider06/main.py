@@ -1,5 +1,3 @@
-a = input('sadf')
-print(a)
 # def mmm(a: int, b: int):
 #     for i in range(a, 0, -1):
 #         if a%i==0 and b%i==0:
@@ -8,11 +6,9 @@ print(a)
 # N = int(input())
 # arr = input().split()
 #
-#
 # big_fenmu = 1
 # big_fenzi = 0
-# # fenmu = [int(string.split('/')[1]) for string in arr]
-# fenmu = list(map(lambda string: int(string.split('/')[1]), arr))
+# fenmu = [int(string.split('/')[1]) for string in arr]
 # for j in fenmu:
 #     big_fenmu = big_fenmu * j
 #
@@ -28,28 +24,44 @@ print(a)
 # else:
 #     s = f'{mmm(big_fenzi % big_fenmu, big_fenmu)}'
 # print(s)
-
-
-
-# students = [
-#             {"name": "John Doe",
-#              "father name": "Robert Doe",
-#              "Address": "123 Hall street"
-#              },
-#             {
-#               "name": "Rahul Garg",
-#               "father name": "Kamal Garg",
-#               "Address": "3-Upper-Street corner"
-#             },
-#             {
-#               "name": "Angela Steven",
-#              "father name": "Jabob steven",
-#              "Address": "Unknown"
-#             }
-# ]
 #
-# print(list(map(lambda student: student['name'], students)))
-# # print(list(map(lambda st)))
+#
+dic = {
+    '0': '1',
+    '1': '0',
+    '2': 'X',
+    '3': '9',
+    '4': '8',
+    '5': '7',
+    '6': '6',
+    '7': '5',
+    '8': '4',
+    '9': '3',
+    '10': '2',
+}
+a = (7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2)
+N = int(input())
+ids = [input() for i in range(N)]
+wrong = []
+for i in ids:
+    weight = 0
+    for k, v in enumerate(i[:17]):
+        if not v.isdigit():
+            wrong.append(i)
+            break
+        weight += a[k] * int(v)
 
-# fruits = [30, 20, 10, 17, 15]
-# print(list(filter(lambda fruit: fruit%5==0, fruits)))
+    # print(dic[str(weight % 11)], i[-1])
+
+    if dic[str(weight % 11)] != i[-1]:
+        if i not in wrong:
+            wrong.append(i)
+
+[print(w) for w in wrong] if wrong else print('All passed')
+
+
+
+
+
+
+
