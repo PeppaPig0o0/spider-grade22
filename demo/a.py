@@ -1,12 +1,15 @@
-# import time
-# now = time.time()
-# print(now)
-# print(time.asctime(time.localtime(now)))
-# print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)))
-#
-# str = '2023-09-28 10:19:13'
-# print(time.strptime(str, '%Y-%m-%d %H:%M:%S'))
-import os
-if not a:
 
+def removeDuplicates(nums) -> int:
+    arr = []
+    i = 0
+    while i < len(nums) - 1:
+        if nums[i] not in arr:
+            arr.append(i)
+            print(arr)
+            i += 1
+        else:
+            del nums[i]
+    print(nums)
+    # return len(nums)
 
+removeDuplicates([1,1,2])
